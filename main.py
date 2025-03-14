@@ -11,16 +11,18 @@ import chat
 import download_ollama
 import subprocess
 
+
+
 def is_model_installed(model_name):
     result = subprocess.run(["ollama", "list"], capture_output=True, text=True)
 
     return model_name in result.stdout
 
-
 ret_value = os.system("ollama --version")
 if ret_value != 0:
     print(f"Ollama not installed")
     download_ollama.download_ollama()
+
 
 if not is_model_installed("smollm2:360m"):
     print("Model not installed!")
