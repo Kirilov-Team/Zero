@@ -1,22 +1,37 @@
 import os
-import pygame
-import download_tts
 
-if os.path.isdir("piper") is False:
-    download_tts.start()
+import ollama
+import torch
 
-pygame.mixer.init()
+# Check CUDA availability
+print(torch.version.cuda)
+print(torch.cuda.is_available())
+import tts
+import chat
+import download_ollama
+import subprocess
 
-os.chdir("piper")
+def is_model_installed(model_name):
+    result = subprocess.run(["ollama", "list"], capture_output=True, text=True)
+
+    return model_name in result.stdout
+
+
+ret_value = os.system("ollama --version")
+if ret_value != 0:
+    print(f"Ollama not installed")
+    download_ollama.download_ollama()
+
+if not is_model_installed("smollm2:360m"):
+    print("Model not installed!")
+    ollama.pull("smollm2:360m")
 
 while True:
-    text = input("Text : ")
+    prompt = input("> ")
+    answer = chat.prompt_with_model(prompt)
 
-    os.system(f'echo "{text}" | piper.exe --model en_GB-cori-high.onnx --output-file audio.wav')
+    tts.talk(answer)
 
-    pygame.mixer.music.load("audio.wav")
-    pygame.mixer.music.play()
-    while pygame.mixer.music.get_busy():
-        pygame.time.Clock().tick(10)
-    pygame.mixer.music.unload()
+
+
 

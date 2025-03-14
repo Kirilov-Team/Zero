@@ -177,3 +177,13 @@ cython_debug/
 piper/*
 
 .idea/*
+
+
+*.spec
+
+piper/*
+
+dist/*
+build/*
+
+
