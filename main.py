@@ -1,4 +1,10 @@
+import download_tts
 import os
+
+if not os.path.isdir("piper"):
+    download_tts.start()
+
+
 
 import ollama
 import torch
@@ -10,6 +16,8 @@ import tts
 import chat
 import download_ollama
 import subprocess
+
+
 
 
 

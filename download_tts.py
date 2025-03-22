@@ -4,8 +4,8 @@ import requests
 
 
 zip_url = "https://github.com/rhasspy/piper/releases/download/2023.11.14-2/piper_windows_amd64.zip"
-onnx_json_url = "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_GB/cori/high/en_GB-cori-high.onnx.json?download=true"
-onnx_url = "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_GB/cori/high/en_GB-cori-high.onnx?download=true"
+onnx_json_url = "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_GB/southern_english_female/low/en_GB-southern_english_female-low.onnx.json?download=true"
+onnx_url = "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_GB/southern_english_female/low/en_GB-southern_english_female-low.onnx?download=true"
 
 
 
@@ -26,8 +26,8 @@ def unzip_file(zip_filename, extract_to):
 
 def download_piper_files(directory):
     print(f"Downloading additional files into {directory}...")
-    onnx_json_filename = os.path.join(directory, "en_GB-cori-high.onnx.json")
-    onnx_filename = os.path.join(directory, "en_GB-cori-high.onnx")
+    onnx_json_filename = os.path.join(directory, "en_GB-southern_english_female-low.onnx.json")
+    onnx_filename = os.path.join(directory, "en_GB-southern_english_female-low.onnx")
 
     download_file(onnx_json_url, onnx_json_filename)
     download_file(onnx_url, onnx_filename)
