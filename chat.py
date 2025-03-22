@@ -1,7 +1,9 @@
 from ollama import chat
 
+import re
+
 def prompt_with_model(prompt):
-    prompt = f"{prompt} (give me a short answer)"
+    prompt = f"{prompt}"
 
     response = chat(model='smollm2:360m', messages=[
       {
@@ -10,4 +12,8 @@ def prompt_with_model(prompt):
       },
     ])
 
-    return response['message']['content']
+    print(response['message']['content'])
+
+    text = re.sub(r"\*.*?\*\s*", "", response['message']['content'])
+
+    return text

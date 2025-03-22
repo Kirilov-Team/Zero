@@ -11,7 +11,9 @@ os.chdir("piper")
 
 def talk(text):
 
-    os.system(f'echo "{text}" | piper.exe --model en_GB-cori-high.onnx --output-file audio.wav')
+    #os.system(f'echo "{text}" | piper.exe --model en_GB-cori-high.onnx --output-file audio.wav')
+    #os.system(f'echo "{text}" | piper.exe --model en_US-hfc_female-medium.onnx --output-file audio.wav')
+    os.system(f'echo "{text}" | piper.exe --model en_GB-southern_english_female-low.onnx --output-file audio.wav')
 
     pygame.mixer.music.load("audio.wav")
     pygame.mixer.music.play()
